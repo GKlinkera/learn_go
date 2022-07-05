@@ -6,6 +6,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type At struct {
+	First string
+	Txt   string
+}
+
 func main() {
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/*")
@@ -21,5 +26,21 @@ func main() {
 			"context": "hello world",
 		})
 	})
+
+	r.GET("/news", func(c *gin.Context) {
+		ax := &At{
+			First: "1",
+			Txt:   "12312",
+		}
+		c.HTML(http.StatusOK, "news.html", gin.H{
+			"title": "第二页",
+			"news":  ax,
+		})
+	})
+
+	r.POST("/post", func(c *gin.Context) {
+		c.String(200, "post return")
+	})
+
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
