@@ -11,6 +11,6 @@ func main() {
 	e := gin.Default()
 	e.LoadHTMLGlob("views/*")
 	routers.VisterRoutersInit(e)  //http://localhost:8001/vister/
-	routers.DefaultRoutersInit(e) //http://localhost:8001/default/
+	routers.DefaultRoutersInit(e) //http://localhost:8001/   http://localhost:8001/times
 	e.Run(":8001")
 }

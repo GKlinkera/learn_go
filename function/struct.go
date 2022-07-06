@@ -9,3 +9,7 @@ type Tianqi struct {
 	Rain  string
 	Cloud string
 }
+
+type Timing struct {
+	Year string
+}

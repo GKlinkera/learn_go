@@ -15,6 +15,14 @@ func Shouye(c *gin.Context) {
 	c.JSON(http.StatusOK, tq)
 }
 
+func Times(c *gin.Context) {
+	ti := &Timing{
+		Year: "2022年",
+	}
+	c.String(200, "时间")
+	c.JSON(http.StatusOK, ti)
+}
+
 func Login(c *gin.Context) {
 	c.HTML(200, "login.html", nil)
 }
