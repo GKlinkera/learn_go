@@ -46,10 +46,19 @@ func DoLogin(c *gin.Context) {
 
 func Upload(c *gin.Context) {
 
-	file, err := c.FormFile("picture")
-	dst := path.Join("./static/upload", file.Filename)
+	file1, err := c.FormFile("picture")
+
 	if err == nil {
-		c.SaveUploadedFile(file, dst)
+		dst := path.Join("./static/upload", file1.Filename)
+		c.SaveUploadedFile(file1, dst)
+
+	}
+
+	file2, err := c.FormFile("picture2")
+
+	if err == nil {
+		dst := path.Join("./static/upload", file2.Filename)
+		c.SaveUploadedFile(file2, dst)
 		c.HTML(http.StatusOK, "upload.html", nil)
 	}
 
