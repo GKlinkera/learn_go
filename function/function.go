@@ -2,6 +2,8 @@ package function
 
 import (
 	"net/http"
+	"path"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -19,7 +21,9 @@ func Times(c *gin.Context) {
 	ti := &Timing{
 		Year: "2022年",
 	}
-	c.String(200, "时间")
+	tt := time.Now()
+	c.String(200, "时间", tt)
+
 	c.JSON(http.StatusOK, ti)
 }
 
@@ -28,13 +32,25 @@ func Login(c *gin.Context) {
 }
 
 func DoLogin(c *gin.Context) {
+
 	u := &Infouser{}
 	if err := c.ShouldBind(u); err == nil {
-		c.JSON(http.StatusOK, u)
+		c.HTML(http.StatusOK, "dologin.html", u)
 	} else {
 		c.JSON(http.StatusOK, gin.H{
 			"err": err.Error(),
 		})
+	}
+
+}
+
+func Upload(c *gin.Context) {
+
+	file, err := c.FormFile("picture")
+	dst := path.Join("./static/upload", file.Filename)
+	if err == nil {
+		c.SaveUploadedFile(file, dst)
+		c.HTML(http.StatusOK, "upload.html", nil)
 	}
 
 }

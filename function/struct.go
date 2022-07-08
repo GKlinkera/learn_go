@@ -13,3 +13,7 @@ type Tianqi struct {
 type Timing struct {
 	Year string
 }
+
+type Filena struct {
+	Filename string
+}
