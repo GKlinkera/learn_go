@@ -1,6 +1,7 @@
 package function
 
 import (
+	"fmt"
 	"net/http"
 	"path"
 	"time"
@@ -61,5 +62,13 @@ func Upload(c *gin.Context) {
 		c.SaveUploadedFile(file2, dst)
 		c.HTML(http.StatusOK, "upload.html", nil)
 	}
+
+}
+
+func Counttime(c *gin.Context) {
+	start := time.Now().UnixNano()
+	c.Next()
+	end := time.Now().UnixNano()
+	fmt.Println(end - start)
 
 }
