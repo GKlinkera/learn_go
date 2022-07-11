@@ -8,6 +8,7 @@ import (
 
 func UploadRoutersInit(e *gin.Engine) {
 	uploadRouters := e.Group("/upload")
+	uploadRouters.Use(function.Counttime)
 	{
 		uploadRouters.POST("/", function.Upload)
 	}

@@ -8,6 +8,7 @@ import (
 
 func VisterRoutersInit(e *gin.Engine) {
 	visterRouters := e.Group("/vister")
+	visterRouters.Use(function.Counttime)
 	{
 		visterRouters.GET("/", function.Login)
 		visterRouters.POST("/dologin", function.DoLogin) //post请求交给DoLogin处理

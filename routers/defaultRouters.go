@@ -8,14 +8,14 @@ import (
 
 func DefaultRoutersInit(e *gin.Engine) {
 	defaultrRouters := e.Group("/")
-
+	defaultrRouters.Use(function.Counttime)
 	{
 
-		defaultrRouters.GET("/", function.Counttime, function.Shouye)
+		defaultrRouters.GET("/", function.Shouye)
 
 		aaRouters := defaultrRouters.Group("/times") //路由嵌套
 		{
-			aaRouters.GET("/", function.Counttime, function.Times)
+			aaRouters.GET("/", function.Times)
 		}
 
 	}
